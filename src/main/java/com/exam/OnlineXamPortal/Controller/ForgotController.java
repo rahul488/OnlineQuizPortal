@@ -66,13 +66,13 @@ public class ForgotController {
 			throw new Exception("User not found");
 		System.out.println("password is"+" "+request.getPassword());
 		user.setPassword(encoder.encode(request.getPassword()));
-<<<<<<< HEAD
+
 		
 		userDao.save(user);
 		
-=======
+
 		userDao.save(user);
->>>>>>> a5430f404912aa8152b25009e2af3973e60b6fee
+
 		return "Success";
 			
 		
