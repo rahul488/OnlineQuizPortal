@@ -116,5 +116,22 @@ public class UserController {
 		
 		return new ResponseEntity<List<Topics>>(topics,HttpStatus.OK);
 	}
+	@PostMapping("/registerAdmin")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<String> registerAdmin(@RequestBody User user) throws Exception {
+		
+		String password=encoder.encode(user.getPassword());
+		user.setPassword(password);
+		
+		
+		User user1=userDao.findByUserName(user.getUserName());
+		
+		if(user1 != null)
+			throw new Exceptionhandler();
+		user.setRole("ROLE_ADMIN");
+		
+		userDao.save(user);
+		return new ResponseEntity<String>("Success",HttpStatus.OK);
+	}
 	
 }

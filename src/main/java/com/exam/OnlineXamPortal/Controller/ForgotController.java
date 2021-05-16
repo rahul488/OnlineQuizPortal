@@ -67,6 +67,8 @@ public class ForgotController {
 		System.out.println("password is"+" "+request.getPassword());
 		user.setPassword(encoder.encode(request.getPassword()));
 		
+		userDao.save(user);
+		
 		return "Success";
 			
 		
